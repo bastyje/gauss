@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 
-void main(int argc, char ** argv) {
+char main(int argc, char ** argv) {
 	int res;
 	Matrix * A = readFromFile(argv[1]);
 	Matrix * b = readFromFile(argv[2]);
