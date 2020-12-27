@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 
-char main(int argc, char ** argv) {
+int main(int argc, char ** argv) {
 	int res;
 	Matrix * A = readFromFile(argv[1]);
 	Matrix * b = readFromFile(argv[2]);
@@ -17,6 +17,11 @@ char main(int argc, char ** argv) {
 	printToScreen(b);
 
 	res = eliminate(A,b);
+    if (res == 1) {
+        printf("Macierz A jest macierzą osobliwą.\n");
+        //return -3;
+    }
+
 	x = createMatrix(b->r, 1);
 	if (x != NULL) {
 		res = backsubst(x,A,b);
