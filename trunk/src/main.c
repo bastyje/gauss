@@ -19,7 +19,7 @@ int main(int argc, char ** argv) {
 	res = eliminate(A,b);
     if (res == 1) {
         printf("Macierz A jest macierzą osobliwą.\n");
-        //return -3;
+        return -3;
     }
 
 	x = createMatrix(b->r, 1);
