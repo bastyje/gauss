@@ -16,13 +16,18 @@ void mainElem(Matrix *A, Matrix *b, int r, int c)
             temp = A->data[i][c];
             tempRow = i;
         }
+        else {
+            tempRow = -1;
+        }
     }
-    for (j = c; j < A->c; j++) {
-        A->data[tempRow][c] = A->data[r][c];
-        A->data[r][c] = temp;
+    if (tempRow != -1) {
+        for (j = c; j < A->c; j++) {
+            A->data[tempRow][c] = A->data[r][c];
+            A->data[r][c] = temp;
+        }
+        *(b->data[tempRow]) = *(b->data[r]);
+        *(b->data[r]) = temp;
     }
-    *(b->data[tempRow]) = *(b->data[r]);
-    *(b->data[r]) = temp;
 }
 
 int eliminate(Matrix *A, Matrix *b)
@@ -31,8 +36,8 @@ int eliminate(Matrix *A, Matrix *b)
     double ratio;
 
     for (c = 0; c < A->c - 1; c++) {
+        mainElem(A, b, c + 1, c);
         for (r = c + 1; r < A->r; r++) {
-            mainElem(A, b, r, c);
             ratio = A->data[r][c] / A->data[c][c];
             for (i = c; i < A->c; i++) {
                 A->data[r][i] -= ratio * A->data[c][i];
