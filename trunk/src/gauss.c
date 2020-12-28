@@ -6,7 +6,7 @@
  * Zwraca 1 - macierz osobliwa - dzielenie przez 0
  */
 
-void mainElem(Martix *A, Matrix *b, int r, int c)
+void mainElem(Matrix *A, Matrix *b, int r, int c)
 {
     double temp;
     int tempRow, i, j;
@@ -18,12 +18,13 @@ void mainElem(Martix *A, Matrix *b, int r, int c)
         }
     }
     for (j = c; j < A->c; j++) {
-        A->data[i][c] = A->data[r][c];
+        A->data[tempRow][c] = A->data[r][c];
         A->data[r][c] = temp;
     }
-    *(b->data[i]) = *(b->data[r]);
+    *(b->data[tempRow]) = *(b->data[r]);
     *(b->data[r]) = temp;
 }
+
 int eliminate(Matrix *A, Matrix *b)
 {
     int r, c, i;
