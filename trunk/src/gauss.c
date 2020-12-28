@@ -1,5 +1,4 @@
 #include "gauss.h"
-#include <math.h>
 
 /*
  * Zwraca 0 - elimnacja zakonczona sukcesem
@@ -17,7 +16,7 @@ int eliminate(Matrix *A, Matrix *b)
             for (i = c; i < A->c; i++) {
                 A->data[r][i] -= ratio * A->data[c][i];
             }
-            *(b->data[r]) = ratio * *(b->data[r - 1]);
+            *(b->data[r]) -= ratio * *(b->data[c]);
         }
     }
     return 0;
