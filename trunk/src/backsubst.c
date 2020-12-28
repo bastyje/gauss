@@ -10,8 +10,19 @@ int backsubst(Matrix *x, Matrix *mat, Matrix *b)
 	* Tutaj należy umieścić właściwą implemntację.
 	*/
 	int i, j;
+
+	if (mat->r != mat->c || x->c > 1 || b->c > 1)
+	{
+		return 2;
+	}
+
 	for (i = x->r - 1; i >= 0; i--)
 	{
+		if (mat->data[i][i] == 0)
+		{
+			return 1;
+		}
+
 		x->data[i][0] = b->data[i][0];
 		for (j = x->r - 1; j > i; j--)
 		{
