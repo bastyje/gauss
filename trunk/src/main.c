@@ -69,6 +69,13 @@ int main(int argc, char ** argv) {
 	return 0;
 }
 
+
+/*
+Zwraca 0, gdy jest prawidlowo
+Zwraca 1, gdy macierz A nie jest macierza kwadratowa
+Zwraca 2, gdy macierz A ma rozna ilosc wierszy niz macierz b
+Zwraca 3, gdy macierz b ma inna liosc kolumn niz 1
+*/
 int checkCorrection(Matrix *A, Matrix *b)
 {
 	if(A->c!=A->r)	return 1;
