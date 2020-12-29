@@ -12,8 +12,8 @@ int main(int argc, char ** argv) {
 	Matrix * b = readFromFile(argv[2]);
 	Matrix * x;
 
-	if (A == NULL) return -1;
-	if (b == NULL) return -2;
+	if (A == NULL) return 13;
+	if (b == NULL) return 14;
 
 	res = checkCorrection(A,b);
 
@@ -40,7 +40,7 @@ int main(int argc, char ** argv) {
 	res = eliminate(A,b);
     if (res == 1) {
         printf("Macierz A jest macierza osobliwa.\n");
-        return -3;
+        return 4;
     }
 
 	x = createMatrix(b->r, 1);
