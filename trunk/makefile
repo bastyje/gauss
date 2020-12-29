@@ -1,13 +1,7 @@
 all:
 	gcc -Wall --pedantic src/*.c -o bin/gauss
 
-test:
-	bin/gauss dane/A dane/b
-	@echo -------------------------
-	@echo Poprawne wyniki X=
-	@echo -29.518072
-	@echo 19.759036
-	@echo ------------------------- 
+
 
 testAll: test test1 test2 test3 test4 test5
 	make test
@@ -16,6 +10,14 @@ testAll: test test1 test2 test3 test4 test5
 	make test3
 	make test4
 	make test5
+
+test:
+	- bin/gauss dane/A dane/b
+	@echo -------------------------
+	@echo Poprawne wyniki X=
+	@echo -29.518072
+	@echo 19.759036
+	@echo ------------------------- 
 
 test1: 
 	- bin/gauss dane/test1/A dane/test1/b
