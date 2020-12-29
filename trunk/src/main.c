@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+int checkCorrection(Matrix *A, Matrix *b);
 
 int main(int argc, char ** argv) {
 	int res;
@@ -13,6 +14,26 @@ int main(int argc, char ** argv) {
 
 	if (A == NULL) return -1;
 	if (b == NULL) return -2;
+
+	res = checkCorrection(A,b);
+
+	if(res == 1)
+	{
+		printf("Podana Macierz, nie jest macierza kwadratowa!\n");
+		return 10;
+	}
+	if(res == 2)
+	{
+		printf("Podana Macierz A oraz Macierz b maja rozne ilosci rzedow!\n");
+		return 11;
+	}
+	if(res == 3)
+	{
+		printf("Podana Macierz ma liczbe kolumn inna niz 1!\n");
+		return 12;
+	}
+
+
 	printToScreen(A);
 	printToScreen(b);
 
@@ -44,6 +65,15 @@ int main(int argc, char ** argv) {
 
 	freeMatrix(A);
 	freeMatrix(b);
+
+	return 0;
+}
+
+int checkCorrection(Matrix *A, Matrix *b)
+{
+	if(A->c!=A->r)	return 1;
+	if(A->r != b->r) return 2;
+	if(b->c != 1) return 3;
 
 	return 0;
 }
