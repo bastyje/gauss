@@ -1,10 +1,20 @@
 #include "gauss.h"
 #include <math.h>
+#include <stdio.h>
 
 /*
- * Zwraca 0 - elimnacja zakonczona sukcesem
- * Zwraca 1 - macierz osobliwa - dzielenie przez 0
+ * Zwraca wartość wyznacznika macierzy trójkątnej
  */
+
+double determinant(Matrix *A, int n)
+{
+    int i;
+    double det = A->data[0][0];
+    for (i = 0; i < n; i++) {
+        det *= A->data[i][i];
+    }
+    return det;
+}
 
 void mainElem(Matrix *A, Matrix *b, int r, int c)
 {
@@ -30,9 +40,14 @@ void mainElem(Matrix *A, Matrix *b, int r, int c)
     }
 }
 
+/*
+ * Zwraca 0 - elimnacja zakonczona sukcesem
+ * Zwraca 1 - macierz osobliwa - dzielenie przez 0
+ */
+
 int eliminate(Matrix *A, Matrix *b)
 {
-    int r, c, i;
+    int i, r, c;
     double ratio;
 
     for (c = 0; c < A->c - 1; c++) {
@@ -45,5 +60,6 @@ int eliminate(Matrix *A, Matrix *b)
             *(b->data[r]) -= ratio * *(b->data[c]);
         }
     }
+    if (determinant(A, A->r) == 0) return 1;
     return 0;
 }
