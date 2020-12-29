@@ -56,5 +56,5 @@ test4:
 test5:
 	- bin/gauss dane/test5/A dane/test5/b
 	@echo ------------------------- 
-	@echo Poprawne wynik testu: Zle dane wejsciowe
+	@echo Poprawne wynik testu: Macierz nie jest macierza kwadratowa
 	@echo -------------------------  
