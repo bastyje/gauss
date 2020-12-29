@@ -10,12 +10,6 @@ test:
 	@echo ------------------------- 
 
 testAll: test test1 test2 test3 test4 test5
-	make test
-	make test1
-	make test2
-	make test3
-	make test4
-	make test5
 
 test1: 
 	- bin/gauss dane/test1/A dane/test1/b
