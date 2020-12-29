@@ -19,24 +19,22 @@ double determinant(Matrix *A, int n)
 void mainElem(Matrix *A, Matrix *b, int r, int c)
 {
     double temp;
-    int tempRow, i, j;
+    int tempRow = -1, i;
     temp = A->data[r][c];
     for (i = r; i < A->r; i++) {
-        if (temp < A->data[r][c]) {
+        if (A->data[i][c] > temp) {
             temp = A->data[i][c];
             tempRow = i;
         }
-        else {
-            tempRow = -1;
-        }
     }
     if (tempRow != -1) {
-        for (j = c; j < A->c; j++) {
-            A->data[tempRow][c] = A->data[r][c];
-            A->data[r][c] = temp;
-        }
-        *(b->data[tempRow]) = *(b->data[r]);
-        *(b->data[r]) = temp;
+        double *tempVer;
+        tempVer = A->data[tempRow];
+        A->data[tempRow] = A->data[r];
+        A->data[r] = tempVer;    
+        tempVer = b->data[tempRow];
+        b->data[tempRow] = b->data[r];
+        b->data[r] = tempVer;    
     }
 }
 
@@ -51,7 +49,7 @@ int eliminate(Matrix *A, Matrix *b)
     double ratio;
 
     for (c = 0; c < A->c - 1; c++) {
-        mainElem(A, b, c + 1, c);
+        mainElem(A, b, c, c);
         for (r = c + 1; r < A->r; r++) {
             ratio = A->data[r][c] / A->data[c][c];
             for (i = c; i < A->c; i++) {
