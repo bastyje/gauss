@@ -1,15 +1,17 @@
 all:
 	gcc -Wall --pedantic src/*.c -o bin/gauss
 
+
+
+testAll: test test1 test2 test3 test4 test5
+
 test:
-	bin/gauss dane/A dane/b
+	- bin/gauss dane/A dane/b
 	@echo -------------------------
 	@echo Poprawne wyniki X=
 	@echo -29.518072
 	@echo 19.759036
 	@echo ------------------------- 
-
-testAll: test test1 test2 test3 test4 test5
 
 test1: 
 	- bin/gauss dane/test1/A dane/test1/b
@@ -48,5 +50,5 @@ test4:
 test5:
 	- bin/gauss dane/test5/A dane/test5/b
 	@echo ------------------------- 
-	@echo Poprawne wynik testu: Zle dane wejsciowe
+	@echo Poprawne wynik testu: Macierz nie jest macierza kwadratowa
 	@echo -------------------------  
