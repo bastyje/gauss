@@ -6,9 +6,6 @@
  */
 int backsubst(Matrix *x, Matrix *mat, Matrix *b)
 {
-	/*
-	* Tutaj należy umieścić właściwą implemntację.
-	*/
 	int i, j;
 
 	if (mat->r != mat->c || x->c > 1 || b->c > 1)
@@ -31,15 +28,5 @@ int backsubst(Matrix *x, Matrix *mat, Matrix *b)
 
 		x->data[i][0] = x->data[i][0] / mat->data[i][i];
 	}
-
-	/* To ponizej jest przepisaniem b do x. Nalezy to poprawic! */
-
-	/*
-	for (i = 0; i < x->r; i++)
-	{
-		x->data[i][0] = b->data[i][0];
-	}
-	*/
-
 	return 0;
 }
