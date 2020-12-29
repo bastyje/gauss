@@ -18,13 +18,23 @@ int main(int argc, char ** argv) {
 
 	res = eliminate(A,b);
     if (res == 1) {
-        printf("Macierz A jest macierzą osobliwą.\n");
+        printf("Macierz A jest macierza osobliwa.\n");
         return -3;
     }
 
 	x = createMatrix(b->r, 1);
 	if (x != NULL) {
 		res = backsubst(x,A,b);
+		if(res == 1)
+		{
+			printf("Macierz A jest macierza osobliwa.\n");
+			return 4;
+		}
+		else if(res == 2)
+		{
+			printf("Macierz ma nieprawidlowe wymiary.\n");
+			return 5;
+		}
 
 		printToScreen(x);
 	  freeMatrix(x);
